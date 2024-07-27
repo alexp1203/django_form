@@ -1,0 +1,16 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+
+    <main class="container">
+      <p class="text-start fs-4 fw-bold">Adicionar Nova Tarefa</p>
+
+
+      <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="ENVIAR" />
+      </form>
+    </main>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Lista</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Formulário</a>
+    </div>
+  </nav>
+
+  <h1 class="text-start fs-4 fw-bold">Lista de respostas</h1>
+
+  {% for registro in registros %}
+  <li>ID : {{ registro.id }} - Nome: {{ registro.nome }} - E-mail: {{ registro.email }} - Data Nascimento: {{ registro.dtNasc }}  </li>
+{% endfor %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Data de Nascimento</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Possui moto?</th>
+      <th scope="col">Possui carro?</th>
+      <th scope="col">Possui avião?</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for registro in formulario_list %}
+      <tr>
+        <th scope="row">{{ registro.id }}</th>
+        <td>{{ registro.nome }}</td>
+        <td>{{ registro.dtNasc|date:'SHORT_DATE_FORMAT'}}</td>
+        <td>{{ registro.email }}</td>
+        <td>{{ registro.resp01 }}</td>
+        <td>{{ registro.resp02 }}</td>
+        <td>{{ registro.resp03 }}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-warning">Editar</button>
+            <button type="button" class="btn btn-danger">Excluir</button>
+            <button type="button" class="btn btn-info">Imprimir</button>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+      {% comment %} Inicio botao de criacao de tarefa {% endcomment %}
+      <a href="{% url 'criar' %}"
+         type="button" class="btn btn-success">Nova Tarefa</a>
+      {% comment %} Fim botao de criacao de tarefa {% endcomment %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
