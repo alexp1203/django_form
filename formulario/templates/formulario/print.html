@@ -1,0 +1,56 @@
+{% extends 'padrao.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block titulo %}
+{{ titulo_pagina }}
+{% endblock %}
+
+
+{% comment %}o sistema de template do django não permite usar o mesmo bloco duas vezes{% endcomment %}
+{% block subtitulo %}
+{{ titulo_pagina }}
+{% endblock %}
+
+
+{% block conteudo %}
+  <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="ENVIAR" />
+    <button type="button" 
+            onclick="window.location.href='{% url 'print' %}'" 
+            class="btn btn-warning">Cancelar</button>
+  </form>
+{% endblock %}
+
+{% for registro in registros %}
+<li>ID : {{ registro.id }} - Nome: {{ registro.nome }} - E-mail: {{ registro.email }} - Data Nascimento: {{ registro.dtNasc }}  </li>
+{% endfor %}
+
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Nome</th>
+    <th scope="col">Data de Nascimento</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Possui moto?</th>
+    <th scope="col">Possui carro?</th>
+    <th scope="col">Possui avião?</th>
+  </tr>
+</thead>
+<tbody>
+  {% for registro in formulario_list %}
+    <tr>
+      <th scope="row">{{ registro.id }}</th>
+      <td>{{ registro.nome }}</td>
+      <td>{{ registro.dtNasc|date:'SHORT_DATE_FORMAT'}}</td>
+      <td>{{ registro.email }}</td>
+      <td>{{ registro.resp01 }}</td>
+      <td>{{ registro.resp02 }}</td>
+      <td>{{ registro.resp03 }}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>

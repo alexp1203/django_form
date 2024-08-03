@@ -19,11 +19,26 @@ from django.urls import path
 from formulario.views import home, lista
 from formulario.views import ListarView
 from formulario.views import CriarView
+from formulario.views import AtualizarView
+from formulario.views import DeletarView
+from formulario.views import CompletarView
+from formulario.views import DetailView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', home),
     #path('', lista),
-    path("", ListarView.as_view(template_name="formulario/lista.html")),
-    path("criar", CriarView.as_view(), name='criar')
+    path("", ListarView.as_view(template_name="formulario/lista.html"), name='listar'),
+    path("criar", CriarView.as_view(), name='criar'),
+    # pk é o parametro da tarefa que será atualizada
+    path("atualizar/<int:pk>",
+         AtualizarView.as_view(), name='atualizar'),
+    path("excluir/<int:pk>",
+         DeletarView.as_view(), name='excluir'),
+    path("completar/<int:pk>",
+         CompletarView.as_view(), name='completar'),
+    path("print/<int:pk>",
+         DetailView.as_view(), name='print'),
+    
 ]

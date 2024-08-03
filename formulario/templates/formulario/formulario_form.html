@@ -3,13 +3,13 @@
 
 
 {% block titulo %}
-  Adicionar Nova Tarefa
+{{ titulo_pagina }}
 {% endblock %}
 
 
 {% comment %}o sistema de template do django não permite usar o mesmo bloco duas vezes{% endcomment %}
 {% block subtitulo %}
-  Adicionar Nova Tarefa
+{{ titulo_pagina }}
 {% endblock %}
 
 
@@ -18,6 +18,9 @@
     {% csrf_token %}
     {{ form|crispy }}
     <input type="submit" value="ENVIAR" />
+    <button type="button" 
+            onclick="window.location.href='{% url 'listar' %}'" 
+            class="btn btn-warning">Cancelar</button>
   </form>
 {% endblock %}
 

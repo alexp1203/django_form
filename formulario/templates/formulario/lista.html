@@ -14,7 +14,7 @@
     </div>
   </nav>
 
-  <h1 class="text-start fs-4 fw-bold">Lista de respostas</h1>
+  <h1 class="text-start fs-4 fw-bold">Lista de registros</h1>
 
   {% for registro in registros %}
   <li>ID : {{ registro.id }} - Nome: {{ registro.nome }} - E-mail: {{ registro.email }} - Data Nascimento: {{ registro.dtNasc }}  </li>
@@ -44,9 +44,13 @@
         <td>{{ registro.resp03 }}</td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-warning">Editar</button>
-            <button type="button" class="btn btn-danger">Excluir</button>
-            <button type="button" class="btn btn-info">Imprimir</button>
+            <button type="button" onclick="window.location.href='{% url 'atualizar' pk=registro.pk %}'"
+            class="btn btn-warning">Editar</button>
+            <button type="button" onclick="window.location.href='{% url 'completar' pk=registro.pk %}'" class="btn btn-info">Completar</button>
+            <button type="button" onclick="window.location.href='{% url 'excluir' pk=registro.pk %}'"
+            class="btn btn-danger" class="btn btn-danger">Excluir</button>
+            <button type="button" onclick="window.location.href='{% url 'print' pk=registro.pk %}'"
+            class="btn btn-info">Imprimir</button>
           </div>
         </td>
       </tr>
@@ -59,7 +63,7 @@
          type="button" class="btn btn-success">Nova Tarefa</a>
       {% comment %} Fim botao de criacao de tarefa {% endcomment %}
 
-
+   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
